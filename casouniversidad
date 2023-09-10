@@ -1,0 +1,256 @@
+import java.util.*;
+
+interface Universidad {
+
+    String getNombre();
+
+    String getDireccion();
+
+    String getNT();
+}
+
+class Persona {
+
+    int numid;
+    String numtipo;
+    String nombres;
+    String apellidos;
+    int direccion;
+
+    public Persona(int numid, String numtipo, String nombres, String apellidos, int direccion) {
+        this.numid = numid;
+        this.numtipo = numtipo;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+    }
+}
+
+class Estudiante extends Persona implements Universidad {
+
+    private String NT;
+
+    public Estudiante(int numid, String numtipo, String nombres, String apellidos, int direccion, String NT) {
+        super(numid, numtipo, nombres, apellidos, direccion);
+        this.NT = NT;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombres;
+    }
+
+    @Override
+    public String getDireccion() {
+        return Integer.toString(direccion);
+    }
+
+    @Override
+    public String getNT() {
+        return NT;
+    }
+
+    public void consultarInfoPersonal() {
+        System.out.println("Informacion del Estudiante:");
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Numero de Id: " + numid);
+        System.out.println("Numero de Tipo: " + numtipo);
+        System.out.println("NT: " + getNT());
+        System.out.println("Direccion: " + getDireccion());
+    }
+}
+
+class Docente extends Persona implements Universidad {
+
+    private String nombreUniversidad;
+
+    public Docente(int numid, String numtipo, String nombres, String apellidos, int direccion, String nombreUniversidad) {
+        super(numid, numtipo, nombres, apellidos, direccion);
+        this.nombreUniversidad = nombreUniversidad;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombres;
+    }
+
+    @Override
+    public String getDireccion() {
+        return Integer.toString(direccion);
+    }
+
+    @Override
+    public String getNT() {
+        return nombreUniversidad;
+    }
+
+    public void consultarInfoPersonal() {
+        System.out.println("Informacion del Docente:");
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Numero de Id: " + numid);
+        System.out.println("Numero de Tipo: " + numtipo);
+        System.out.println("Nombre de la Universidad: " + getNT());
+        System.out.println("Direccion: " + getDireccion());
+    }
+}
+
+class Administrativo extends Persona implements Universidad {
+
+    private String nombreUniversidad;
+
+    public Administrativo(int numid, String numtipo, String nombres, String apellidos, int direccion, String nombreUniversidad) {
+        super(numid, numtipo, nombres, apellidos, direccion);
+        this.nombreUniversidad = nombreUniversidad;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombres;
+    }
+
+    @Override
+    public String getDireccion() {
+        return Integer.toString(direccion);
+    }
+
+    @Override
+    public String getNT() {
+        return nombreUniversidad;
+    }
+
+    public void consultarInfoPersonal() {
+        System.out.println("Informacion del Administrativo:");
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Numero de Id: " + numid);
+        System.out.println("Numero de Tipo: " + numtipo);
+        System.out.println("Nombre de la Universidad: " + getNT());
+        System.out.println("Direccion: " + getDireccion());
+    }
+
+}
+
+public class casouniversidad {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        List<Persona> personas = new ArrayList<>();
+
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Agregar estudiante, profesor o administrativo");
+            System.out.println("2. Consultar por ID estudiante, profesor o administrativo");
+            System.out.println("3. Eliminar por ID estudiante, profesor o administrativo");
+            System.out.println("4. Mostrar las personas agregadas");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opcion: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Seleccione el tipo de persona a agregar:");
+                    System.out.println("1. Estudiante");
+                    System.out.println("2. Profesor");
+                    System.out.println("3. Administrativo");
+                    int tipoPersona = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Ingrese el nombre de la persona: ");
+                    String nombrePersona = scanner.nextLine();
+                    System.out.print("Ingrese el numero de documento: ");
+                    int numDocumento = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Ingrese el numero de tipo: ");
+                    String numTipo = scanner.nextLine();
+                    System.out.print("Ingrese la direccion: ");
+                    int direccion = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (tipoPersona == 1) {
+                        System.out.print("Ingrese el NT del estudiante: ");
+                        String NT = scanner.nextLine();
+                        Estudiante estudiante = new Estudiante(numDocumento, numTipo, nombrePersona, "", direccion, NT);
+                        personas.add(estudiante);
+                    } else if (tipoPersona == 2) {
+                        System.out.print("Ingrese el nombre de la universidad del profesor: ");
+                        String nombreUniversidad = scanner.nextLine();
+                        Docente docente = new Docente(numDocumento, numTipo, nombrePersona, "", direccion, nombreUniversidad);
+                        personas.add(docente);
+                    } else if (tipoPersona == 3) {
+                        System.out.print("Ingrese el nombre de la universidad o cargo del administrativo: ");
+                        String nombreUniversidadAdmin = scanner.nextLine();
+                        Administrativo administrativo = new Administrativo(numDocumento, numTipo, nombrePersona, "", direccion, nombreUniversidadAdmin);
+                        personas.add(administrativo);
+                    } else {
+                        System.out.println("Opcion no valida. Intente de nuevo.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Ingrese el numero de documento a consultar: ");
+                    int numDocumentoConsulta = scanner.nextInt();
+                    scanner.nextLine();
+                    consultarPorID(personas, numDocumentoConsulta);
+                    break;
+
+                case 3:
+                    System.out.print("Ingrese el numero de documento a eliminar: ");
+                    int numDocumentoEliminar = scanner.nextInt();
+                    scanner.nextLine();
+                    eliminarPorID(personas, numDocumentoEliminar);
+                    break;
+
+                case 4:
+                    mostrarPersonas(personas);
+                    break;
+
+                case 5:
+                    System.out.println("Saliendo del programa...");
+                    break;
+
+                default:
+                    System.out.println("Opción no valida. Intente de nuevo.");
+            }
+        } while (opcion != 5);
+    }
+
+    public static void consultarPorID(List<Persona> personas, int numDocumentoConsulta) {
+        for (Persona persona : personas) {
+            if (persona.numid == numDocumentoConsulta) {
+                if (persona instanceof Estudiante) {
+                    ((Estudiante) persona).consultarInfoPersonal();
+                } else if (persona instanceof Docente) {
+                    ((Docente) persona).consultarInfoPersonal();
+                } else if (persona instanceof Administrativo) {
+                    ((Administrativo) persona).consultarInfoPersonal();
+                }
+                return;
+            }
+        }
+        System.out.println("Persona no encontrada.");
+    }
+
+    public static void eliminarPorID(List<Persona> personas, int numDocumentoEliminar) {
+        for (Persona persona : personas) {
+            if (persona.numid == numDocumentoEliminar) {
+                personas.remove(persona);
+                System.out.println("Persona eliminada.");
+                return;
+            }
+        }
+        System.out.println("Persona no encontrada.");
+    }
+
+    public static void mostrarPersonas(List<Persona> personas) {
+        for (Persona persona : personas) {
+            if (persona instanceof Estudiante) {
+                ((Estudiante) persona).consultarInfoPersonal();
+            } else if (persona instanceof Docente) {
+                ((Docente) persona).consultarInfoPersonal();
+            } else if (persona instanceof Administrativo) {
+                ((Administrativo) persona).consultarInfoPersonal();
+            }
+        }
+    }
+}
