@@ -1,0 +1,114 @@
+class Vehiculo {
+    private final String marca;
+    private final String modelo;
+    private final int ano;
+
+    public Vehiculo(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    public void mostrarInformacion() {
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+    }
+}
+
+class Automovil extends Vehiculo {
+    private int numeroPuertas;
+
+    public Automovil(String marca, String modelo, int ano, int numeroPuertas) {
+        super(marca, modelo, ano);
+        this.numeroPuertas = numeroPuertas;
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Numero de puertas: " + numeroPuertas);
+    }
+}
+
+class Motocicleta extends Vehiculo {
+    private int cilindrada;
+
+   
+    public Motocicleta(String marca, String modelo, int ano, int cilindrada) {
+        super(marca, modelo, ano);
+        this.cilindrada = cilindrada;
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Cilindrada: " + cilindrada + " cc");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Automovil auto1 = new Automovil("Toyota", "Land Cruiser Lc 300", 2022, 4);
+        Automovil auto2 = new Automovil("Honda", "Civic Type R", 2023, 4);
+        Automovil auto3 = new Automovil("Ford", "150 Raptor", 2021, 4);
+        Automovil auto4 = new Automovil("Volkswagen", "Teramont Hingline", 2022, 4);
+        Automovil auto5 = new Automovil("Chevrolet", "Corvette C8 Stingray", 2023, 2);
+        Automovil auto6 = new Automovil("Porsche", "Porsche 718 Gt4", 2021, 2);
+        Automovil auto7 = new Automovil("Nissan", "Altima", 2022, 4);
+        Automovil auto8 = new Automovil("BMW", "M4 F83 Cabriolet", 2023, 2);
+        Automovil auto9 = new Automovil("Mercedes Benz", "Amg Gle63 Coupe", 2022, 4);
+
+        Motocicleta moto1 = new Motocicleta("Honda", "CBR500R", 2021, 500);
+        Motocicleta moto2 = new Motocicleta("Kawasaki", "Ninja 650", 2022, 650);
+        Motocicleta moto3 = new Motocicleta("Yamaha", "YZF-R6", 2023, 600);
+        Motocicleta moto4 = new Motocicleta("Suzuki", "GSX-R750", 2021, 750);
+        Motocicleta moto5 = new Motocicleta("Ducati", "Monster 821", 2022, 821);
+        Motocicleta moto6 = new Motocicleta("BMW", "S1000RR", 2023, 1000);
+        Motocicleta moto7 = new Motocicleta("KTM", "Duke 390", 2021, 390);
+        Motocicleta moto8 = new Motocicleta("Triumph", "Street Triple RS", 2022, 765);
+        Motocicleta moto9 = new Motocicleta("Harley-Davidson", "Sportster Iron 883", 2023, 883);
+
+
+        System.out.println("=== Informacion de los Automoviles ===\n");
+        auto1.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto2.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto3.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto4.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto5.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto6.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto7.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto8.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        auto9.mostrarInformacion();
+        System.out.println("\n\n");
+
+
+        System.out.println("=== Informacion de las Motocicletas ===\n");
+        moto1.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto2.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto3.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto4.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto5.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto6.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto7.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto8.mostrarInformacion();
+        System.out.println("------------------------------\n");
+        moto9.mostrarInformacion();
+    }
+}
